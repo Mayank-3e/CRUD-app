@@ -15,6 +15,6 @@ Create a new entry.
 
 Do what their name suggests.
 
-### Send email
+### Send email using Nodemailer
 
-Sends the selected entries to a specified email address.
+Sends the selected entries to a specified email address using node module Nodemailer.
