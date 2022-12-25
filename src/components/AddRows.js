@@ -9,7 +9,8 @@ const AddRows = () => {
     const addForm = async (e) =>
     {
         e.preventDefault()
-        let url = process.env.REACT_APP_API || "http://localhost:5000"
+        e.target.disabled=true
+        const url = process.env.REACT_APP_API || "http://localhost:5000"
         setLoading()
         let response = await fetch(url + "/api/info/adduser", {
             method: 'POST',
@@ -22,6 +23,7 @@ const AddRows = () => {
         else if (response.error) showAlert(response.error,'danger')
         else setData(data.concat(response))
         closeref.current.click()
+        e.target.disabled=false
     }
 
     return (
