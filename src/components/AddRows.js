@@ -6,10 +6,11 @@ const AddRows = () => {
     const [form, setForm] = useState({ name: "", phn: "", email: "", hobby: "" })
     const onChange = e => { setForm({ ...form, [e.target.name]: e.target.value }) }
     const closeref=useRef()
+    const submitBtn=useRef()
     const addForm = async (e) =>
     {
         e.preventDefault()
-        e.target.disabled=true
+        submitBtn.current.disabled=true
         const url = process.env.REACT_APP_API || "http://localhost:5000"
         setLoading()
         let response = await fetch(url + "/api/info/adduser", {
@@ -23,7 +24,7 @@ const AddRows = () => {
         else if (response.error) showAlert(response.error,'danger')
         else setData(data.concat(response))
         closeref.current.click()
-        e.target.disabled=false
+        submitBtn.current.disabled=false
     }
 
     return (
@@ -55,7 +56,7 @@ const AddRows = () => {
                                     <label htmlFor="hobby" className="form-label">Hobbies</label>
                                     <input type="text" className="form-control" name='hobby' aria-describedby="emailHelp" required onChange={onChange} value={form.hobby} />
                                 </div>
-                                <button type="submit" className="btn btn-primary">Save changes</button>
+                                <button type="submit" className="btn btn-primary" ref={submitBtn}>Save changes</button>
                             </form>
                         </div>
                         <div className="modal-footer">

@@ -22,7 +22,9 @@ function App() {
       response=await response.json()
       setData(response)
     }
+    setLoading()
     getdata()
+    setLoading("none")
   },[])
 
   const sendEmail=async(e)=>
@@ -41,7 +43,11 @@ function App() {
     })
     response = await response.json()
     setLoading('none')
-    if (response.error) showAlert(response.error.response,'danger')
+    if (response.error)
+    {
+      if(response.error.response) showAlert(response.error.response,'danger')
+      else showAlert(response.error.code,'danger')
+    }
     else showAlert("Email sent!",'success')
     e.target.disabled=false
   }
