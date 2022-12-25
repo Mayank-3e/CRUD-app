@@ -14,17 +14,17 @@ function App() {
   {
     const getdata=async()=>
     {
+      setLoading()
       const url=process.env.REACT_APP_API||"http://localhost:5000"
       let response=await fetch(url+"/api/info/fetchall",{
         method: 'GET',
         headers: {'Content-Type':'application/json'}
       })
       response=await response.json()
+      setLoading("none")
       setData(response)
     }
-    setLoading()
     getdata()
-    setLoading("none")
   },[])
 
   const sendEmail=async(e)=>
