@@ -46,7 +46,8 @@ function App() {
     if (response.error)
     {
       if(response.error.response) showAlert(response.error.response,'danger')
-      else showAlert(response.error.code,'danger')
+      else if(response.error.code) showAlert(response.error.code,'danger')
+      else showAlert(response.error,'danger')
     }
     else showAlert("Email sent!",'success')
     e.target.disabled=false
